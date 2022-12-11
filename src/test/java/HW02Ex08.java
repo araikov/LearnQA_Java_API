@@ -19,6 +19,7 @@ public class HW02Ex08 {
 
         String token = response.getString("token");
         int seconds = response.getInt("seconds");
+
         System.out.println(token);
         System.out.println(seconds);
 
@@ -32,6 +33,7 @@ public class HW02Ex08 {
                 .andReturn();
 
         responseTokenNotReady.print();
+
 
         try {
         Thread.sleep(seconds * 1000);
