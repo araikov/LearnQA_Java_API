@@ -22,6 +22,7 @@ public class UserAuthTest extends BaseTestCase {
     String header;
     int userIdOnAuth;
 
+
     @BeforeEach
     public void loginUser(){
         Map<String, String> authData = new HashMap<>();
