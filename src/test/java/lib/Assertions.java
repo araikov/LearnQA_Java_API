@@ -23,7 +23,7 @@ public class Assertions {
         assertEquals(expectedValue, value, "JSON value is not equal to expected value");
     }
 
-    public static void assertResponseTestEquals(Response Response, String expectedAnswer){
+    public static void assertResponseTextEquals(Response Response, String expectedAnswer){
         assertEquals(
                 expectedAnswer,
                 Response.asString(),

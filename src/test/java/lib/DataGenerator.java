@@ -35,4 +35,15 @@ public class DataGenerator {
         }
         return userData;
     }
+
+    public static Map<String, String> getRegistrationDataWithoutObligateParameter(String parameter) {
+        Map<String, String> defaultValues = getRegistrationData();
+        if (defaultValues.containsKey(parameter)) {
+            defaultValues.remove(parameter);
+        } else {
+            System.out.println("A parameter " + parameter + " isn't obligatory");
+        }
+        return defaultValues;
+    }
+
 }

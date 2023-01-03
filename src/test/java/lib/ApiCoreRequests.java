@@ -49,5 +49,15 @@ public class ApiCoreRequests {
                 .post(url)
                 .andReturn();
     }
+
+    @Step("Make a POST-request for registration with body")
+    public Response makePostRegistrationWithBody(String url, Map<String, String> userData) {
+        return given()
+                .filter(new AllureRestAssured())
+                .body(userData)
+                .post(url)
+                .andReturn();
+    }
+
 }
 
