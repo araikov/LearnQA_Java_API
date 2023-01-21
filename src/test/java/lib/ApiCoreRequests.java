@@ -21,6 +21,7 @@ public class ApiCoreRequests {
 
     }
 
+
     @Step("Make a GET-request with auth cookie only")
     public Response makeGetRequestWithCookie(String url, String cookie){
         return given()
