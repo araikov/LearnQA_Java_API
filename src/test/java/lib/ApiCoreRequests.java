@@ -2,7 +2,9 @@ package lib;
 
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
 import io.restassured.http.Header;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import java.util.Map;
@@ -42,6 +44,15 @@ public class ApiCoreRequests {
 
     }
 
+    @Step("Make a GET-request without token and cookie")
+    public Response makeGetRequestWithoutTokenAndCookie(String url){
+        return given()
+                .filter(new AllureRestAssured())
+                .get(url)
+                .andReturn();
+
+    }
+
     @Step("Make a POST-request")
     public Response makePostRequest(String url, Map<String, String> authData){
         return given()
@@ -51,12 +62,49 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
+    @Step("Make a POST-request (json)")
+    public JsonPath makePostRequestJson(String url, Map<String, String> userData) {
+        return given()
+                .given()
+                .body(userData)
+                .post("https://playground.learnqa.ru/api/user")
+                .jsonPath();
+    }
+
+    @Step("Make a DELETE-request")
+    public Response makeDeleteRequest(String url, String token, String cookie) {
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .delete(url)
+                .andReturn();
+    }
+
     @Step("Make a POST-request for registration with body")
     public Response makePostRegistrationWithBody(String url, Map<String, String> userData) {
         return given()
                 .filter(new AllureRestAssured())
                 .body(userData)
                 .post(url)
+                .andReturn();
+    }
+
+    @Step("Make a PUT-request without auth")
+    public Response makePutWithoutAuth(String url, Map<String, String> userData) {
+        return given()
+                .body(userData)
+                .put(url)
+                .andReturn();
+    }
+
+    @Step("Make a PUT-request with auth")
+    public Response makePutWithAuth(String url, Map<String, String> userData, String token, String cookie) {
+        return given()
+                .body(userData)
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .put(url)
                 .andReturn();
     }
 
