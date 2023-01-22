@@ -1,5 +1,9 @@
 package tests;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -7,10 +11,13 @@ import lib.ApiCoreRequests;
 import lib.Assertions;
 import lib.BaseTestCase;
 import lib.DataGenerator;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+
+@Feature("Edit")
 
 public class UserEditTest extends BaseTestCase {
 
@@ -21,6 +28,8 @@ public class UserEditTest extends BaseTestCase {
 
 
     @Test
+    @DisplayName("Edit user")
+    @Severity(SeverityLevel.BLOCKER)
     public void testEditJustCreatedTest(){
     //GENERATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -69,6 +78,8 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Edit user by not autorised user")
+    @Severity(SeverityLevel.CRITICAL)
     public void testEditNotAutorised(){
         //GENERATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -101,6 +112,8 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Edit user by another user")
+    @Severity(SeverityLevel.NORMAL)
     public void testEditAutorisedAnotherUser(){
         //GENERATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -163,6 +176,8 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Put not valid email")
+    @Severity(SeverityLevel.NORMAL)
     public void testEditEmailWithoutAdSameUser(){
         //GENERATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();
@@ -205,6 +220,8 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Put not valid name")
+    @Severity(SeverityLevel.NORMAL)
     public void testEditShortNameSameUser(){
         //GENERATE USER
         Map<String, String> userData = DataGenerator.getRegistrationData();

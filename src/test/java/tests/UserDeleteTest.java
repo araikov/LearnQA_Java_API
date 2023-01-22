@@ -1,5 +1,9 @@
 package tests;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -7,10 +11,13 @@ import lib.ApiCoreRequests;
 import lib.Assertions;
 import lib.BaseTestCase;
 import lib.DataGenerator;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+
+@Feature("Delete")
 
 public class UserDeleteTest extends BaseTestCase {
 
@@ -21,6 +28,8 @@ public class UserDeleteTest extends BaseTestCase {
 
 
     @Test
+    @DisplayName("Delete Protect User with id=2")
+    @Severity(SeverityLevel.CRITICAL)
     public void testDeleteProtectUser() {
 
 
@@ -44,6 +53,8 @@ public class UserDeleteTest extends BaseTestCase {
     }
 
         @Test
+        @DisplayName("Delete base user")
+        @Severity(SeverityLevel.BLOCKER)
         public void testDeleteUser(){
 
         //GENERATE USER
@@ -89,6 +100,8 @@ public class UserDeleteTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Delete base user by another user")
+    @Severity(SeverityLevel.NORMAL)
     public void testDeleteByAnotherUser(){
 
         //GENERATE USER

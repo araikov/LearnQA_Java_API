@@ -1,5 +1,8 @@
 package tests;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -7,12 +10,16 @@ import lib.Assertions;
 import lib.BaseTestCase;
 import lib.DataGenerator;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+
 import java.util.HashMap;
 import java.util.Map;
+
+@Feature("Registration")
 
 public class UserRegisterTest extends BaseTestCase {
 
@@ -22,6 +29,8 @@ public class UserRegisterTest extends BaseTestCase {
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
     @Test
+    @DisplayName("Create User With Existing Email")
+    @Severity(SeverityLevel.BLOCKER)
     public void testCreateUserWithExistingEmail(){
         String email = "vinkotoc@example.com";
 
@@ -40,6 +49,8 @@ public class UserRegisterTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Create User")
+    @Severity(SeverityLevel.BLOCKER)
     public void testCreateUserSuccesfully(){
         String email = DataGenerator.getRandomEmail();
 
@@ -57,6 +68,8 @@ public class UserRegisterTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Create User with email without at")
+    @Severity(SeverityLevel.NORMAL)
     public void testCreateUserWithoutAt(){
         String email = "vinkotocexample.com";
 
@@ -77,6 +90,8 @@ public class UserRegisterTest extends BaseTestCase {
 
 
         @ParameterizedTest
+        @DisplayName("Create user without obligate field")
+        @Severity(SeverityLevel.NORMAL)
         @ValueSource(strings = {"username", "firstName", "lastName", "email", "password"})
             public void testCreateUserWithoutObligateField(String parameter){
 
@@ -96,6 +111,8 @@ public class UserRegisterTest extends BaseTestCase {
         }
 
     @Test
+    @DisplayName("Create User With Short Name")
+    @Severity(SeverityLevel.NORMAL)
     public void testCreateUserWithShortName(){
         String username = "a";
 
@@ -114,6 +131,8 @@ public class UserRegisterTest extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Create User With Long Name")
+    @Severity(SeverityLevel.NORMAL)
     public void testCreateUserWithLongName(){
         String username = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
